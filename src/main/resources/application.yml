@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name: 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: false
+    show-sql: true
+    database: postgresql
+    properties:
+      hibernate:
+        '[format_sql]': true
