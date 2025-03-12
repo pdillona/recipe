@@ -1,35 +1,57 @@
 package com.example.recipe.entity;
 
+import com.example.recipe.entity.Manual;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name="menu")
-@Getter
-@RequiredArgsConstructor
+@Table(name = "menu")
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@Builder
 public class Menu {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id")
+    private int id;        // 일련번호(기존 rcpSeq)
 
-    @Column
-    private String rcpName;
+    @Column(name = "rcp_name")
+    private String rcpName;   // 메뉴명
 
-    @Column
-    private String rcpPartsDtls;
+    @Lob
+    @Column(name = "rcp_parts_dtls", columnDefinition = "TEXT")
+    private String rcpPartsDtls;  // 재료정보
 
-    @Column
-    private String rcpWay2;
+    @Column(name = "rcp_way2")
+    private String rcpWay2;       // 조리방법
 
-    @Column
-    private String rcpPat2;
+    @Column(name = "rcp_pat2")
+    private String rcpPat2;       // 요리종류
 
-    @Column
-    private String hashTag;
+    @Column(name = "hash_tag")
+    private String hashTag;       // 해시태그
+
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<Manual> manuals = new ArrayList<>();
+
+    /**
+     * 메뉴얼 단계 추가 메소드
+     */
+    public void addManual(int step, String content) {
+        Manual manual = Manual.builder()
+                .menu(this)
+                .step(step)
+                .content(content)
+                .build();
+
+        this.manuals.add(manual);
+    }
 }
