@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://aws-0-ap-northeast-2.pooler.supabase.com:6543/postgres?reWriteBatchedInserts=true&stringtype=unspecified&useUnicode=true&characterEncoding=UTF-8
-    username: postgres.ajycxsfkrrakcvzewldn
-    password: ATaVk803y5fgwkvV
+    url:
+    username:
+    password:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -17,7 +17,7 @@ spring:
 api:
   food:
     base-url: http://openapi.foodsafetykorea.go.kr
-    key: 80d07ea01dc048adaed4
+    key:
     service-id: COOKRCP01
 
 logging:
