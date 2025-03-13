@@ -95,7 +95,6 @@ public class AddRecipeServiceImpl implements AddRecipeService {
     private Menu convertToEntity(RecipeApiResponseDTO.RecipeItem item) {
         // 기본 레시피 정보 생성
         Menu menu = Menu.builder()
-                .id(item.getRcpSeq())
                 .rcpName(item.getRcpNm())
                 .rcpPartsDtls(item.getRcpPartsDtls())
                 .rcpWay2(item.getRcpWay2())

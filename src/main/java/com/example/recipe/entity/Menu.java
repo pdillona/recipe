@@ -1,6 +1,5 @@
 package com.example.recipe.entity;
 
-import com.example.recipe.entity.Manual;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,14 +18,14 @@ import java.util.List;
 public class Menu {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;        // 일련번호(기존 rcpSeq)
 
     @Column(name = "rcp_name")
     private String rcpName;   // 메뉴명
 
-    @Lob
-    @Column(name = "rcp_parts_dtls", columnDefinition = "TEXT")
+    @Column(name = "rcp_parts_dtls")
     private String rcpPartsDtls;  // 재료정보
 
     @Column(name = "rcp_way2")
